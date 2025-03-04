@@ -153,6 +153,7 @@ def zero_end(arr):
         else:
             arr[left], arr[right] = arr[right], arr[left]
             left += 1
+            right += 1
     
     return arr
 
@@ -195,21 +196,70 @@ def test_zero_end():
     assert zero_end([0, 0, 1, 0, 3, 12]) == [1, 3, 12, 0, 0, 0]
 
 # Бенчмарки
-def benchmark(func, *args):
-    start_time = time.time()
-    func(*args)
-    end_time = time.time()
-    return end_time - start_time
 
-def test_benchmarks():
-    assert benchmark(two_sum, [3, 8, 9, 11, 16, 18, 19, 21], 25) < 0.001
-    assert benchmark(reverse_array, [3, 8, 6, 9, 9, 8, 6]) < 0.001
-    assert benchmark(reverse_array_part, [1, 2, 3, 4, 5, 6, 7], 3) < 0.001
-    assert benchmark(merge_sorted_arrays, [3, 8, 10, 11], [1, 7, 9]) < 0.001
-    assert benchmark(merge, [3, 8, 10, 11, 0, 0, 0], [1, 7, 9]) < 0.001
-    assert benchmark(sort_binary_array, [0, 1, 1, 0, 1, 0, 1, 0]) < 0.001
-    assert benchmark(sort_colors, [2, 0, 2, 1, 1, 0]) < 0.001
-    assert benchmark(even_first, [3, 2, 4, 1, 11, 8, 9]) < 0.001
-    assert benchmark(zero_end, [0, 0, 1, 0, 3, 12]) < 0.001
+def test_two_sum_benchmark(benchmark):
+    nums = [3, 8, 9, 11, 16, 18, 19, 21]
+    target = 25
 
-test_benchmarks()
+    def run():
+        two_sum(nums, target)
+    benchmark(run)
+
+def test_reverse_array_benchmark(benchmark):
+    arr = [3, 8, 6, 9, 9, 8, 6]
+
+    def run():
+        reverse_array(arr)
+    benchmark(run)
+
+def test_reverse_array_part_benchmark(benchmark):
+    arr = [1, 2, 3, 4, 5, 6, 7]
+    k = 3
+
+    def run():
+        reverse_array_part(arr, k)
+    benchmark(run)
+
+def test_merge_sorted_arrays_benchmark(benchmark):
+    arr1 = [3, 8, 10, 11]
+    arr2 = [1, 7, 9]
+
+    def run():
+        merge_sorted_arrays(arr1, arr2)
+    benchmark(run)
+
+def test_merge_benchmark(benchmark):
+    arr1 = [3, 8, 10, 11, 0, 0, 0]
+    arr2 = [1, 7, 9]
+
+    def run():
+        merge(arr1, arr2)
+    benchmark(run)
+
+def test_sort_binary_array_benchmark(benchmark):
+    arr = [0, 1, 1, 0, 1, 0, 1, 0]
+
+    def run():
+        sort_binary_array(arr)
+    benchmark(run)
+
+def test_sort_colors_benchmark(benchmark):
+    nums = [2, 0, 2, 1, 1, 0]
+
+    def run():
+        sort_colors(nums)
+    benchmark(run)
+
+def test_even_first_benchmark(benchmark):
+    arr = [3, 2, 4, 1, 11, 8, 9]
+
+    def run():
+        even_first(arr)
+    benchmark(run)
+
+def test_zero_end_benchmark(benchmark):
+    arr = [0, 0, 1, 0, 3, 12]
+
+    def run():
+        zero_end(arr)
+    benchmark(run)
