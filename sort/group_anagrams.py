@@ -18,11 +18,11 @@ def group_anagrams(strs):
     return list(anagram_map.values())
 
 def test_group_anagrams():
-    assert sorted(group_anagrams(["eat", "tea", "tan", "ate", "nat", "bat"])) == sorted([["bat"], ["nat", "tan"], ["ate", "eat", "tea"]])
+    assert sorted(group_anagrams(["eat", "tea", "tan", "ate", "nat", "bat"])) == sorted([['bat'], ['eat', 'tea', 'ate'], ['tan', 'nat']])
     assert sorted(group_anagrams(["won", "now", "aaa", "ooo", "ooo"])) == sorted([["aaa"], ["ooo", "ooo"], ["won", "now"]])
     assert sorted(group_anagrams([""])) == sorted([[""]])  # Пустая строка
     assert sorted(group_anagrams(["a"])) == sorted([["a"]])  # Одна буква
-    assert sorted(group_anagrams(["abc", "cba", "bca", "xyz"])) == sorted([["abc", "bca", "cba"], ["xyz"]])  # Разные анаграммы
+    assert sorted(group_anagrams(["abc", "cba", "bca", "xyz"])) == sorted([["abc", "cba", "bca"], ["xyz"]])  # Разные анаграммы
 
 def test_group_anagrams_benchmark(benchmark):
     # Генерация тестовых данных
